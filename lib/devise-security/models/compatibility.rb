@@ -6,7 +6,7 @@ module Devise
       extend ActiveSupport::Concern
 
       # for backwards compatibility with Rails < 5.1.x
-      unless Devise.activerecord51?
+      defined?(ActiveRecord) && ActiveRecord.gem_version >= Gem::Version.new("5.1.x")
         def saved_change_to_encrypted_password?
           encrypted_password_changed?
         end
